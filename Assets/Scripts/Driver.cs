@@ -1,18 +1,17 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Driver : MonoBehaviour
 {
-    [SerializeField] float steerSpeed = 0.01f;
-    [SerializeField] float moveSpeed = 0.001f;
-    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField] float steerSpeed = 200f;
+    [SerializeField] float moveSpeed = 5f;
+    [SerializeField] TextMeshProUGUI textMesh;
+
     void Start()
     {
-        
+        textMesh.enabled = false;
     }
-
-    // Update is called once per frame
     void Update()
     {
         MoveCar();
@@ -46,5 +45,11 @@ public class Driver : MonoBehaviour
         
         transform.Rotate(0, 0, steerAmount);
         transform.Translate(0, moveAmount, 0);
+    }
+    
+    public void SetSpeed(float speedAmount)
+    {
+        moveSpeed = speedAmount;
+        textMesh.enabled = speedAmount > 5f;
     }
 }
